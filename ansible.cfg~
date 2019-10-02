@@ -1,0 +1,30 @@
+[defaults]
+inventory                   = inventory/staging
+roles_path                  = role/
+host_key_checking           = False
+; hash_behaviour            = merge
+; deprecation_warnings      = False
+retry_files_enabled         = True
+retry_files_save_path       = .retry
+display_skipped_hosts       = False
+ansible_managed             = File managed by Ansible. Manual changes will be lost. ~luk4hn
+gathering                   = smart
+; fact_caching                = jsonfile
+; fact_caching_connection     = /tmp/ansible-fact
+; fact_caching_timeout        = 1800
+; remote_user                 = devops
+pipelining                  = true
+forks                       = 10
+
+strategy_plugins = plugin/mitogen/ansible_mitogen/plugins/strategy
+; export ANSIBLE_STRATEGY=mitogen_linear to use mitogen
+; strategy = linear
+
+[privilege_escalation]
+become                      = true
+become_method               = sudo
+become_user                 = root
+
+[ssh_connection]
+; ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o ForwardAgent=yes
+control_path = /tmp/ansible-ssh-%%h-%%p-%%r
