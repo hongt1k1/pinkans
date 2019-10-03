@@ -1,0 +1,17 @@
+{
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": true,
+  "hostname": "10.101.61.19",
+  "port": "22",
+  "target": "/opt/project/pinkans",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "root",
+  "keyfile": "C:\\Users\\damva\\.ssh\\id_rsa",
+  "passphrase": "Chito1618",
+  "watch": [],
+  "transport": "scp"
+}
