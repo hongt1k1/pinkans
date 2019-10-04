@@ -1,0 +1,42 @@
+-
+  name: Copy file with owner and permissions
+  hosts: all
+  tasks:
+    - name: copy file
+      copy:
+        src: /tmp/foo.conf
+        dest: /tmp/foo.conf
+-
+  name: Example about command module
+  hosts: all
+  tasks:
+    - name: execute command 'date'
+      command: date
+-
+  name: Display resolve.conf contents
+  hosts: all
+  tasks:
+    - name: Display resolve.conf contents
+      command: cat resolve.conf chdir /etc
+
+-
+  name: Run a script on all nodes
+  hosts: all
+  tasks:
+    - name: Run a script on all nodes
+      script: /opt/pink_libs/script.sh -arg1 -arg2
+
+-
+  name: Start services in order
+  hosts: uat-bos1
+  tasks:
+    - name: Start the mysql database server
+      service: name=mysql state=started
+
+-
+  name: Start services in order
+  hosts: uat-bos1
+  tasks:
+    - lineinfile:
+        path: /etc/my.cnf
+        line: report_host
