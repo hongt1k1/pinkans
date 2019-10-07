@@ -1,0 +1,9 @@
+-
+  name: add user to uat 1
+  hosts: uat-bos-1
+  tasks:
+    -
+      user:
+        name: hongdv
+        uid: 1040
+        group: root
