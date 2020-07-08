@@ -1,3 +1,11 @@
+[tksvr]
 uat-bos-1 ansible_host=10.20.43.38 ansible_ssh_pass=1
+uat-bos-2 ansible_host=10.20.43.39 ansible_ssh_pass=1
+uat-bos-3 ansible_host=10.20.43.40 ansible_ssh_pass=1
+
+[dbserver]
+uat-bos-1 ansible_host=10.20.43.38 ansible_ssh_pass=1
+
+[webserver]
 uat-bos-2 ansible_host=10.20.43.39 ansible_ssh_pass=1
 uat-bos-3 ansible_host=10.20.43.40 ansible_ssh_pass=1
