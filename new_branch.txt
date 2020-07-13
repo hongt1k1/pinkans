@@ -1,6 +1,0 @@
-new branch
-# new gi 
-
-## staging
-
-## deployment
