@@ -1,2 +1,0 @@
-# pinkans
-Study ansible 
