@@ -1,0 +1,10 @@
+uat-bos-1 ansible_host=10.20.43.38 
+uat-bos-2 ansible_host=10.20.43.39 
+uat-bos-3 ansible_host=10.20.43.40 
+
+[dbservers]
+uat-bos-1
+
+[webservers]
+uat-bos-2
+uat-bos-3
