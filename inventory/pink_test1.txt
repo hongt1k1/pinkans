@@ -1,1 +1,0 @@
-uat-bos-1 ansible_host=10.20.43.38 
