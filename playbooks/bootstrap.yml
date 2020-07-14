@@ -1,0 +1,12 @@
+- name: provision common settings for servers
+  hosts: all
+  roles:
+    - { role: common, tags: common }
+      #    - { role: users, tags: users }
+      #    - { role: supervisord, tags: supervisord }
+      #    - { role: node-exporter, tags: node-exporter }
+      #    - { role: telegraf, tags: telegraf }
+      #    - { role: td-agent, tags: td-agent }
+  # environment:
+  #   http_proxy: http://127.0.0.1:1080
+  #   https_proxy: http://127.0.0.1:1080
