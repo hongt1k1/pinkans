@@ -77,7 +77,7 @@
     line: "SELINUX=disabled"
   notify: force selinux off
 
-- name: tiki auditd
+- name: corp auditd
   block:
     - name: auditd logformat
       lineinfile:
