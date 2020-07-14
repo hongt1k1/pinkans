@@ -6,38 +6,6 @@
   file: path=/tiki/log state=directory mode=0777
 
 # private networking
-- name: setup self-managed dns
-  block:
-  - name: NetworkManager dns discovery
-    template:
-      src: "NetworkManager/dns.conf.j2"
-      dest: "/etc/NetworkManager/conf.d/05-dns.conf"
-    notify: restart NetworkManager
-
-  - name: config private dns
-    template:
-      src: resolv.conf.j2
-      dest: /etc/resolv.conf
-    when:
-      - nameserver.primary != 'unmanaged'
-
-  - name: /etc/sysconfig/network - add resolv options
-    lineinfile:
-      dest: '/etc/sysconfig/network'
-      regexp: '^RES_OPTIONS=".*"'
-      line: 'RES_OPTIONS="timeout:1 retries:1"'
-
-  - name: prepend local dns to dhclient.conf
-    lineinfile:
-      dest: '/etc/dhclient.conf'
-      insertbefore: "BOF"
-      regexp: '^prepend domain-name-servers 127.0.0.1;$'
-      line: 'prepend domain-name-servers 127.0.0.1;'
-    when:
-      - dns_local_cache.enabled|default(false)|bool == true
-
-  when: nameserver.primary != 'unmanaged' or dns_local_cache.enabled|default(false)|bool == true
-
 - name: install TIKI repo
   yum:
     name: 'https://repo.tiki.com.vn/centos/7/x86_64/tiki-release-1.2.2.el7-1.x86_64.rpm'
@@ -56,6 +24,6 @@
     dest: /etc/rsyslog.d/00-graylog.conf
   notify:
     - restart rsyslog
-  when:
-    - "'r-public-managed' not in group_names"
-    - "nameserver.primary != 'unmanaged'"
+      #  when:
+      #    - "'r-public-managed' not in group_names"
+      #    - "nameserver.primary != 'unmanaged'"

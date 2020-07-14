@@ -4,13 +4,6 @@
     name: '{{ inventory_hostname }}'
   notify: restart rsyslog
 
-- name: set hostname (/etc/hosts)
-  lineinfile:
-    dest: '/etc/hosts'
-    insertbefore: "BOF"
-    regexp: '^{{ ansible_default_ipv4.address }} (.*)\.{{ server_managed_domain }}'
-    line: '{{ ansible_default_ipv4.address }} {{ inventory_hostname }}.{{ server_managed_domain }} {{ inventory_hostname }}'
-
 ## base repo
 - name: install yum-utils, epel repo
   yum:
