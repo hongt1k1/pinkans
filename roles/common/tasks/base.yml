@@ -36,15 +36,6 @@
   notify:
     - restart cron
 
-- name: config chronyd sync servers
-  template:
-    src: chrony.conf.j2
-    dest: /etc/chrony.conf
-  notify: restart chronyd
-
-- name: ensure chronyd is enabled
-  service: name=chronyd state=started enabled=yes
-
 ## swap
 - name: ansible_swaptotal_mb
   debug: var=ansible_swaptotal_mb
