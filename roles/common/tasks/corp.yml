@@ -6,17 +6,17 @@
   file: path=/tiki/log state=directory mode=0777
 
 # private networking
-- name: install TIKI repo
-  yum:
-    name: 'https://repo.tiki.com.vn/centos/7/x86_64/tiki-release-1.2.2.el7-1.x86_64.rpm'
-    state: 'present'
-  when: ansible_distribution == 'CentOS'
+#- name: install TIKI repo
+#  yum:
+#    name: 'https://repo.tiki.com.vn/centos/7/x86_64/tiki-release-1.2.2.el7-1.x86_64.rpm'
+#    state: 'present'
+#  when: ansible_distribution == 'CentOS'
 
-- name: update TIKI Release
-  yum:
-    name: tiki-release
-    state: 'latest'
-  when:  ansible_distribution == 'CentOS'
+#- name: update TIKI Release
+#  yum:
+#    name: tiki-release
+#    state: 'latest'
+#  when:  ansible_distribution == 'CentOS'
 
 - name: config syslog forwarding
   template:

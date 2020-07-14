@@ -1,7 +1,7 @@
 ansible_python_interpreter: /usr/bin/python
 
-corp: 'tiki'
-server_managed_domain: 'svr.tiki.services'
+corp: 'corp'
+server_managed_domain: 'svr.corp.services'
 managed_region: 'undefined'
 
 common_base_packages: [tcpdump, psmisc, rsync, curl, wget, uptimed, htop, sudo, sysstat, lsof, net-tools, iotop, ncdu, dstat, git, bind-utils, vim-enhanced, ntpdate, tmux, traceroute, nethogs, telnet, yum-plugin-versionlock, unzip, NetworkManager, strace, whois, nc, chrony, jq, bwm-ng, rpcbind]
