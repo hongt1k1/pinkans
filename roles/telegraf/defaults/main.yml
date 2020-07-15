@@ -7,12 +7,12 @@ telegraf_input_plugins: []
 
 s_programs:
   telegraf:
-    command:          '/tiki/telegraf/telegraf -config /tiki/telegraf/telegraf.conf -config-directory /tiki/telegraf/telegraf.d'
+    command:          '/corp/telegraf/telegraf -config /corp/telegraf/telegraf.conf -config-directory /corp/telegraf/telegraf.d'
     numprocs:         1
-    directory:        '/tiki/telegraf'
+    directory:        '/corp/telegraf'
     autostart:        true
     autorestart:      true
     user:             'root'
-    stdout_logfile:   '/tiki/log/telegraf.stdout.log'
-    stderr_logfile:   '/tiki/log/telegraf.stderr.log'
+    stdout_logfile:   '/corp/log/telegraf.stdout.log'
+    stderr_logfile:   '/corp/log/telegraf.stderr.log'
     environment:      ''

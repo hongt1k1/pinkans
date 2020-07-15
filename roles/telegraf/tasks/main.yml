@@ -1,16 +1,16 @@
 ---
-- name: add users tiki
-  user: name=tiki uid=701 shell=/bin/bash
+- name: add users corp
+  user: name=corp uid=701 shell=/bin/bash
 
 - name: check if telegraf already installed
-  stat: path=/tiki/telegraf/telegraf
+  stat: path=/corp/telegraf/telegraf
   register: telegraf_bin
 
 - name: install telegraf
   block:
     - name: create base telegraf path
-      file: path={{ item }} state=directory owner=tiki group=tiki
-      with_items: [/tiki/telegraf/]
+      file: path={{ item }} state=directory owner=corp group=corp
+      with_items: [/corp/telegraf/]
 
     - name: download telegraf release
       get_url:
@@ -23,7 +23,7 @@
       unarchive:
         src: '{{ telegraf_src.dest }}'
         remote_src: yes
-        dest: /tiki/telegraf
+        dest: /corp/telegraf
         extra_opts: ['--strip', '4']
         exclude: ['lib', 'log', 'logrotate.d']
 
@@ -32,13 +32,13 @@
 - name: apply config files
   template:
     src: 'telegraf.conf.j2'
-    dest: '/tiki/telegraf/telegraf.conf'
+    dest: '/corp/telegraf/telegraf.conf'
   notify: restart telegraf
 
 - name: apply input plugins config
   template:
     src: 'input/{{ item }}.conf.j2'
-    dest: '/tiki/telegraf/telegraf.d/input.{{ item }}.conf'
+    dest: '/corp/telegraf/telegraf.d/input.{{ item }}.conf'
   with_items: '{{ telegraf_input_plugins }}'
   when: telegraf_input_plugins | length > 0
   notify: restart telegraf
