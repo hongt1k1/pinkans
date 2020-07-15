@@ -1,0 +1,6 @@
+-
+  name: Demo test deploy a web application
+  hosts: uat-2
+  tasks:
+    - name: Ping test
+      ping:
