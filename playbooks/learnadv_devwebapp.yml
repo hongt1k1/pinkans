@@ -1,6 +1,48 @@
 -
   name: Demo test deploy a web application
-  hosts: uat-2
+  hosts: uat-1
   tasks:
-    - name: Ping test
-      ping:
+    - name: Install all required dependencies
+      yum: name={{ item }} state=installed
+      with_items:
+          - python
+          - python-setuptool
+          - python-dev
+          - build-essential
+          - python-pip
+
+    - name: mysql server
+      yum: name={{ item }} state=installed
+      with_items:
+          - mysql-server
+          - mysql-client
+
+    - name: Start mysql service
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: create database
+      mysql_db:
+        name: employee_db
+        state: present
+
+    - name: create user
+      mysql_user:
+        name: db_user
+        password: Passw0rd
+        priv: '*.*:ALL'
+        state: present
+        host: '%'
+    - name: Install python flask
+      pip:
+        name: {{ item }}
+        state: present
+      with_items:
+        - flask
+        - flask-mysql_db
+    - name: Copy source code
+      copy: src=app.py dest=/opt/app.py
+    - name: Start web server
+      shell: FLASK_APP=app.py nohub flask run --host=0.0.0.0
