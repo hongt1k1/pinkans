@@ -1,0 +1,28 @@
+---
+# tasks file for mariadb
+  - name: Install mariadb
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - mariadb-server
+      - mariadb-libs 
+
+  - name: Start and enable mariadb
+    service:
+      name: mariadb
+      state: started
+      enabled: yes
+
+  - name: Create database
+    mysql_db:
+      name: wordpressdb
+      state: present
+
+  - name: Create user 
+    mysql_user:
+      name: wpusr
+      password: Passw0rd
+      priv: '*.*:ALL'
+      state: present
+      host: '%'

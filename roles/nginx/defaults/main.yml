@@ -1,0 +1,30 @@
+---
+# defaults file for nginx
+nginx_conf_dir: '/etc/nginx'
+nginx_default_rootdir: '/usr/share/nginx/html'
+nginx_default_vhost_http_port: '80'
+nginx_setting:
+  user: 'tiki'
+    #load_modules:
+    #- /usr/lib64/nginx/modules/ngx_http_statsd_module.so
+    #- /usr/lib64/nginx/modules/ngx_http_lua_module.so
+    #- /usr/lib64/nginx/modules/ngx_http_vhost_traffic_status_module.so
+  worker_processes: 'auto'
+  worker_rlimit_nofile: 65536
+  worker_connections: 16384
+  client_header_timeout: '3m'
+  client_body_timeout: '3m'
+  send_timeout: '3m'
+  client_max_body_size: '100m'
+  client_body_buffer_size: '128k'
+  connection_pool_size: '512'
+  client_header_buffer_size: '1k'
+  large_client_header_buffers: '4 8k'
+  request_pool_size: '4k'
+  output_buffers: '2 32k'
+  postpone_output: '1460'
+  keepalive_timeout: '65'
+  keepalive_requests: '2048'
+  proxy_buffer_size: '256k'
+  proxy_busy_buffers_size: '256k'
+  proxy_buffers: '16 128k'
