@@ -1,0 +1,16 @@
+---
+  - name: Install nginx
+
+
+
+  - name: install php-fpm
+
+
+
+
+  - name: Install mariadb
+
+
+
+
+  - name: copy wordpress to server and extract

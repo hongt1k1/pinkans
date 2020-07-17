@@ -1,20 +1,7 @@
 ---
-- name: Install nginx
-  hosts: uat-bos-2
-  become: true
-
-  tasks:
-  - name: Add epel-release repo
-    yum:
-      name: epel-release
-      state: present
-
   - name: Install nginx
-    yum:
-      name: nginx
-      state: present
+    hosts: uat-3
+    roles:
+      #- { role: common }
+      - { role: nginx }
 
-  - name: Start NGiNX
-    service:
-      name: nginx
-      state: started

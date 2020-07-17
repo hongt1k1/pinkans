@@ -1,25 +1,29 @@
 -
   name: Demo test deploy a web application
-  hosts: uat-1
+  hosts: web-2 
   tasks:
     - name: Install all required dependencies
-      yum: name={{ item }} state=installed
+      yum: 
+        name: "{{ item }}" 
+        state: present
       with_items:
           - python
-          - python-setuptool
-          - python-dev
-          - build-essential
+          - python-setuptools
+          - python-devel
           - python-pip
+          - MySQL-python
 
     - name: mysql server
-      yum: name={{ item }} state=installed
+      yum: 
+        name: "{{ item }}" 
+        state: present
       with_items:
-          - mysql-server
-          - mysql-client
+          - mariadb-server
+          - mariadb-libs
 
     - name: Start mysql service
       service:
-        name: mysql
+        name: mariadb
         state: started
         enabled: yes
 
@@ -37,12 +41,13 @@
         host: '%'
     - name: Install python flask
       pip:
-        name: {{ item }}
+        name: "{{ item }}"
         state: present
       with_items:
-        - flask
-        - flask-mysql_db
+        - Flask
+
     - name: Copy source code
       copy: src=app.py dest=/opt/app.py
+
     - name: Start web server
-      shell: FLASK_APP=app.py nohub flask run --host=0.0.0.0
+      shell: nohup FLASK_APP=/opt/app.py flask run --host=0.0.0.0 &
