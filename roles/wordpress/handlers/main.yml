@@ -1,0 +1,7 @@
+# roles/wordpress/handlers/main.yml
+---
+
+- name: restart wordpress
+  service:
+    name: wordpress
+    state: restarted

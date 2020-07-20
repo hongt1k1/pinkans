@@ -1,15 +1,5 @@
 ---
-- name: Install php fpm to Centos 7
-  yum: 
-    name: '{{item}}'
-    state: present
-  with_items:
-    - php
-    - php-mysql
-    - php-fpm
-- name: Enable and start service php
-  service: 
-    name: '{{item}}'
-    state: started
-    enabled: True
-  with_items:
+  - name: Install php-fpm
+    hosts: uat-3
+    roles:
+      - { role: php-fpm }
