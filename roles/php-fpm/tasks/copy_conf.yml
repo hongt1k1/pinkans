@@ -1,0 +1,9 @@
+---
+# tasks file for php-fpm
+- name: Copy file config to dest
+  copy:
+    src: files/www.conf
+    dest: /etc/php-fpm.d/www.conf
+    owner: root
+    group: root
+    mode: '0644'

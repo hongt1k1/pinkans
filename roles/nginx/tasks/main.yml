@@ -4,6 +4,9 @@
     yum:
       name: nginx
       state: present
+
+  - import_tasks: copy_conf.yml
+
   - name: Start nginx
     service:
       name: nginx

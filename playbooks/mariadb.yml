@@ -1,0 +1,5 @@
+---
+  - name: Install mariadb, create database and user for wordpress
+    hosts: uat-3
+    roles: 
+      - { role: mariadb, tags: mariadb }

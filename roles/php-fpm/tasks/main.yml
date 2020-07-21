@@ -1,5 +1,22 @@
 ---
 # tasks file for php-fpm
+- name: install repo epel
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: present
+
+- name: install repo remi 
+  yum:
+    name: https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+- name: install yum-ultil
+  yum: 
+    name: yum-utils
+    state: present
+
+- name: enable repo remi
+  shell: sudo yum-config-manager --enable remi-php74
+
 - name: Install php fpm to Centos 7
   yum:
     name: '{{item}}'
@@ -8,6 +25,20 @@
     - php
     - php-mysql
     - php-fpm
+    - php-mysqlnd
+    - php-zip
+    - php-devel
+    - php-gd
+    - php-mcrypt
+    - php-mbstring
+    - php-curl
+    - php-xml
+    - php-pear
+    - php-bcmath
+    - php-json
+
+- import_tasks: copy_conf.yml 
+
 - name: Enable and start service php
   service:
     name: '{{item}}'
@@ -15,10 +46,3 @@
     enabled: True
   with_items:
     - php-fpm
-- name: Copy file config to dest
-  copy:
-    src: files/www.conf
-    dest: /etc/php-fpm.d/www.conf
-    owner: root
-    group: root
-    mode: '0644'

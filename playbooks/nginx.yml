@@ -3,5 +3,5 @@
     hosts: uat-3
     roles:
       #- { role: common }
-      - { role: nginx }
+      - { role: nginx, tags: nginx }
 
