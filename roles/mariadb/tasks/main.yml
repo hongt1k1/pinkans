@@ -1,16 +1,30 @@
 ---
 # tasks file for mariadb
-  - name: Install mariadb
+  - name: Install all required dependencies
     yum:
       name: "{{ item }}"
       state: present
     with_items:
-      - mariadb-server
-      - mariadb-libs 
+      - python
+      - python-setuptools
+      - python-devel
+      - python-pip
+      - MySQL-python
+
+  - name: Install wget
+    yum: 
+      name: wget
+      state: present
+  - name: wget maridb repo
+    shell: sudo wget https://downloads.mariadb.com/MariaDB/mariadb_repo_setup && sudo chmod +x mariadb_repo_setup && sudo ./mariadb_repo_setup
+  - name: Install mariadb 
+    yum:
+      name: MariaDB-server
+      state: present
 
   - name: Start and enable mariadb
-    service:
-      name: mariadb
+    systemd:
+      name: mariadb.service
       state: started
       enabled: yes
 
@@ -26,3 +40,10 @@
       priv: '*.*:ALL'
       state: present
       host: '%'
+  - name: Create local user
+    mysql_user:
+      name: wpusr
+      password: Passw0rd
+      priv: '*.*:ALL'
+      state: present
+      host: 'localhost'

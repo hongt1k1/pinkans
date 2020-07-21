@@ -1,23 +1,20 @@
 # roles/wordpress/tasks/install.yml
 ---
+  - name: Copy wordpress source to dest
+    copy:
+      src: files/wordpress-5.4.2.tar.gz
+      dest: /var/www/wordpress-5.4.2.tar.gz
 
-- name: Ensure repository is installed
-  package:
-    name: "{{ item }}"
-    state: installed
-  with_items: "{{ wordpress_repository }}"
-  tags: wordpress
+  - name: unzip wordpress
+    shell: cd /var/www && tar -zxf wordpress-5.4.2.tar.gz
 
-- name: Check whether Apache is already installed
-  stat:
-    path: "{{ wordpress_httpd_service }}"
-  register: wordpress_httpd_status
-  failed_when: not wordpress_httpd_status.stat.exists
-  tags: wordpress
-
-- name: Install Wordpress
-  package:
-    name: "{{ item }}"
-    state: installed
-  with_items: "{{ wordpress_packages }}"
-  tags: wordpress
+  - name: copy file config to des
+    copy:
+      src: files/wp-config.php
+      dest: /var/www/wordpress/wp-config.php
+        
+  - name: change mode to wordpress
+    file: 
+      path: /var/www/wordpress
+      owner: nginx
+      group: nginx

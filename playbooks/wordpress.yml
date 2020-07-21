@@ -1,0 +1,5 @@
+---
+  - name: Install wordpress
+    hosts: uat-3
+    roles:
+        - { role: wordpress, tags: wordpress }

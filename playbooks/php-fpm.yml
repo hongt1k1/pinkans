@@ -2,4 +2,4 @@
   - name: Install php-fpm
     hosts: uat-3
     roles:
-      - { role: php-fpm }
+      - { role: php-fpm, tags: php-fpm }
