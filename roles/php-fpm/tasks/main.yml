@@ -15,7 +15,7 @@
     state: present
 
 - name: enable repo remi
-  shell: sudo yum-config-manager --enable remi-php74
+  shell: yum-config-manager --enable remi-php74
 
 - name: Install php fpm to Centos 7
   yum:

@@ -1,6 +1,6 @@
 ---
   - name: setup wordpress all in 1 for 1 music node
-    hosts: uat-3
+    hosts: web-2
     roles:
       - { role: common, tags: common }
       - { role: nginx, tags: nginx }
